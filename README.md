@@ -7,32 +7,38 @@ framework's deployment and asset management.
 
 Add the following to your Cargo.toml
 
-    [dependencies]
-    webpacker = "~0.1"
+```toml
+[dependencies]
+webpacker = "~0.1"
 
-    [build-dependencies]
-    webpacker = "~0.1"
+[build-dependencies]
+webpacker = "~0.1"
+```
 
 In your build script you can do the following:
 
-    use webpacker;
-    fn main() {
-        // Validating dependencies…
-        assert!(webpacker::valid_project_dir());
+```rust
+use webpacker;
+fn main() {
+    // Validating dependencies…
+    assert!(webpacker::valid_project_dir());
 
-        // Comiling assets…
-        let _ = webpacker::compile();
-    }
+    // Comiling assets…
+    let _ = webpacker::compile();
+}
+```
 
 And then in your application during web start up you can generate
 a hash of the file manifest with:
 
-    use webpacker;
+```rust
+use webpacker;
 
-    // Returns webpacker::Manifest object
-    // which has a `get` method to look up
-    // each file.
-    webpacker::manifest()
+// Returns webpacker::Manifest object
+// which has a `get` method to look up
+// each file.
+webpacker::manifest()
+```
 
 You can use the `Manifest` object in your routing tables.
 
