@@ -1,7 +1,7 @@
-# Webpacker-Rs
+# Webpacker-rs
 
-Webpacker-Rs is a Rust wrapper for using WebpackerCli in your Rust web framework's deployment
-and asset management.
+Webpacker-rs is a Rust wrapper for using WebpackerCli/Webpacker/Webpack in your Rust web
+framework's deployment and asset management.
 
 ## Contributing
 
