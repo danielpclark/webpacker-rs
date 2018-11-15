@@ -5,26 +5,26 @@ use std::io::{BufRead, BufReader};
 
 pub fn valid_project_dir() -> bool {
     Command::new("yarn").arg("-v")
-        .status().expect("Error: Yarn needs to be available.")
-        .success() &&
+        .output().expect("Error: Yarn needs to be available.")
+        .status.success() &&
         Command::new("ruby").arg("-v")
-        .status().expect("Error: Ruby needs to be available.")
-        .success() &&
+        .output().expect("Error: Ruby needs to be available.")
+        .status.success() &&
         Command::new("node").arg("-v")
-        .status().expect("Error: Node needs to be available.")
-        .success() &&
+        .output().expect("Error: Node needs to be available.")
+        .status.success() &&
         Command::new("gem").arg("which").arg("rake")
-        .status().expect("Error: Rake needs to be available.")
-        .success() &&
+        .output().expect("Error: Rake needs to be available.")
+        .status.success() &&
         Command::new("gem").arg("which").arg("bundler")
-        .status().expect("Error: Rake needs to be available.")
-        .success() &&
+        .output().expect("Error: Rake needs to be available.")
+        .status.success() &&
         Command::new("webpacker-cli")
-        .status().expect("Error: WebpackerCli needs to be available.")
-        .success() &&
+        .output().expect("Error: WebpackerCli needs to be available.")
+        .status.success() &&
         Command::new("rake").arg("webpacker:verify_install")
-        .status().expect("Error: Webpacker not verified as installed.  Did you try `webpacker-cli init` ?")
-        .success()
+        .output().expect("Error: Webpacker not verified as installed.  Did you try `webpacker-cli init` ?")
+        .status.success()
 }
 
 pub fn compile() -> Result<(), String> {
