@@ -66,8 +66,9 @@ The recommended way to use this is to have a helper method write the mapped file
 the generated webpage HTML source.  So if you're using handlebars or terra then you could do
 something like:
 
-    <script src="{{ manifest.get("application.js") }}"></script>
+    <script src="public{{ manifest.get("application.js") }}"></script>
 
+Note the manifest value will have a preceeding slash so you don't need one after the folder name `public`.
 
 ## Contributing
 
