@@ -66,7 +66,7 @@ The recommended way to use this is to have a helper method write the mapped file
 the generated webpage HTML source.  So if you're using [handlebars](https://github.com/sunng87/handlebars-rust)
 or [tera](https://github.com/Keats/tera) then you could do something like:
 
-    <script src="public{{ manifest.get("application.js") }}"></script>
+    <script src="public{{ manifest.get("application.js").unwrap() }}"></script>
 
 _Note the manifest value will have a preceeding slash so you don't need one after the folder name `public`.
 Also it would be nicer to create a helper method for yourself that precedes your asset with concatenation of
