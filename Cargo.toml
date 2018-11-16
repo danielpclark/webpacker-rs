@@ -1,6 +1,6 @@
 [package]
 name          = "webpacker"
-version       = "0.2.0"
+version       = "0.3.0"
 authors       = ["Daniel P. Clark <6ftdan@gmail.com>"]
 description   = "A Rust wrapper for using Webpacker to manage assets."
 repository    = "https://github.com/danielpclark/webpacker-rs"
@@ -11,10 +11,3 @@ license       = "LGPL-3.0"
 
 [dependencies]
 im            = "~12.2.0"
-
-gotham        = { version = "^0.3", optional = true }
-
-[features]
-default       = []
-
-gotham-helper = ["gotham"]
