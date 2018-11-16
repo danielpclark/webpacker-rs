@@ -59,7 +59,7 @@ pub fn router() -> Router {
 
 And in each of your webpages you link to your assets as though they were in the `public/` folder. 
 This will map the normal file names like `application.js` to their hashed version
-`application-285f2db5acb1800187f0.js`.  _I'm not sure having the router do this lets the cache
+`/packs/application-285f2db5acb1800187f0.js`.  _I'm not sure having the router do this lets the cache
 invalidation work as intended._
 
 The recommended way to use this is to have a helper method write the mapped file name right to
