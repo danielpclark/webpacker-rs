@@ -70,6 +70,23 @@ or [tera](https://github.com/Keats/tera) then you could do something like:
 
 Note the manifest value will have a preceeding slash so you don't need one after the folder name `public`.
 
+Do this preferred way means you should have the folder `/public/packs/*` routed something like:
+
+```rust
+pub fn router() -> Router {
+    build_simple_router(|route| {
+        route.get("public/packs/*").to_dir(
+            FileOptions::new("public/packs")
+                .with_cache_control("no-cache")
+                .with_gzip(true)
+                .build(),
+        );
+    })  
+}
+```
+
+`FileOptions` here provides Async file support.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/danielpclark/webpacker-cli
