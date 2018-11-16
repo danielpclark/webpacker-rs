@@ -12,7 +12,7 @@ fn test_file_options_from_asset_path() {
     use super::Manifest;
     let mut manifest = Manifest::new();
     manifest.insert("asdf".into(), "/qwerty".into());
-    let file = AssetPath::new("public", "asdf", manifest);
+    let file = AssetPath::new("public", "asdf", &manifest);
     FileOptions::from(file);
     assert!(true); // made it this far
 }

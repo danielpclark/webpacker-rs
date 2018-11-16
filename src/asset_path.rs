@@ -6,7 +6,7 @@ pub struct AssetPath {
 }
 
 impl AssetPath {
-    pub fn new<S>(dir: S, file_key: S, manifest: Manifest) -> Self 
+    pub fn new<S>(dir: S, file_key: S, manifest: &Manifest) -> Self 
     where S: Into<String> {
         let file = file_key.into();
         AssetPath {
@@ -28,6 +28,6 @@ impl<'a> From<AssetPath> for String {
 fn test_asset_path() {
     let mut manifest = Manifest::new();
     manifest.insert("asdf".into(), "/qwerty".into());
-    let file = AssetPath::new("public", "asdf", manifest);
+    let file = AssetPath::new("public", "asdf", &manifest);
     assert_eq!(&String::from(file), "public/qwerty");
 }
