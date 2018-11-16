@@ -3,7 +3,7 @@ use std::process::Command;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-type Manifest = HashMap<String, String>;
+pub type Manifest = HashMap<String, String>;
 
 pub fn valid_project_dir() -> bool {
     Command::new("yarn").arg("-v")
