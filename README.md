@@ -63,10 +63,32 @@ This will map the normal file names like `application.js` to their hashed versio
 invalidation work as intended._
 
 The recommended way to use this is to have a helper method write the mapped file name right to
-the generated webpage HTML source.  So if you're using [handlebars](https://github.com/sunng87/handlebars-rust)
-or [tera](https://github.com/Keats/tera) then you could do something like:
+the generated webpage HTML source.  So if you're using [tera](https://github.com/Keats/tera) then you
+could do something like:
 
-    <script src="public{{ manifest.get("application.js").unwrap() }}"></script>
+```rust
+lazy_static! {
+    pub static ref MANIFEST: Manifest = webpacker::manifest(None).unwrap();
+}
+
+pub fn index_page(state: State) -> (State, (mime::Mime, String)) {
+    let mut context = Context::new();
+
+    context.insert(
+      "application_source",
+      format!("public{}", MANIFEST.get("application.js").unwrap())
+    );
+
+    let rendered = TERA.render("landing_page/index.html.tera", &context).unwrap();
+
+    (state, (mime::TEXT_HTML, rendered))
+}
+```
+
+```html
+<script src="{{ application_source }}"></script>
+```
+
 
 _Note the manifest value will have a preceeding slash so you don't need one after the folder name `public`.
 Also it would be nicer to create a helper method for yourself that precedes your asset with concatenation of
