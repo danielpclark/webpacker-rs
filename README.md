@@ -67,17 +67,25 @@ the generated webpage HTML source.  So if you're using [tera](https://github.com
 could do something like:
 
 ```rust
+pub static ASSET_DIRECTORY: &'static str = "public";
+
 lazy_static! {
     pub static ref MANIFEST: Manifest = webpacker::manifest(None).unwrap();
 }
 
+mod assets {
+    use super::{ASSET_DIRECTORY, MANIFEST};
+    use webpacker::asset_path::AssetPath;
+    use std::ops::Deref;
+
+    pub fn source(key: &str) -> String {
+        AssetPath::new(ASSET_DIRECTORY, key, MANIFEST.deref()).into()
+    }
+}
+
 pub fn index_page(state: State) -> (State, (mime::Mime, String)) {
     let mut context = Context::new();
-
-    context.insert(
-      "application_source",
-      format!("public{}", MANIFEST.get("application.js").unwrap())
-    );
+    context.insert("application_source", &assets::source("application.js"));
 
     let rendered = TERA.render("landing_page/index.html.tera", &context).unwrap();
 
@@ -88,11 +96,6 @@ pub fn index_page(state: State) -> (State, (mime::Mime, String)) {
 ```html
 <script src="{{ application_source }}"></script>
 ```
-
-
-_Note the manifest value will have a preceeding slash so you don't need one after the folder name `public`.
-Also it would be nicer to create a helper method for yourself that precedes your asset with concatenation of
-`public` or whatever directory name you choose to serve it under._
 
 Doing this preferred way means you should have the folder `/public/packs/*` routed with something like this:
 
