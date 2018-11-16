@@ -12,7 +12,7 @@ license       = "LGPL-3.0"
 [dependencies]
 im            = "~12.2.0"
 
-gotham        = { version = "*", optional = true }
+gotham        = { version = "^0.3", optional = true }
 
 [features]
 default       = []
