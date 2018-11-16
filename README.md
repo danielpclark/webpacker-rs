@@ -9,10 +9,10 @@ Add the following to your Cargo.toml
 
 ```toml
 [dependencies]
-webpacker = "~0.1"
+webpacker = "~0.2"
 
 [build-dependencies]
-webpacker = "~0.1"
+webpacker = "~0.2"
 ```
 
 In your build script you can do the following:
