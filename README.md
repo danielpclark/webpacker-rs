@@ -68,9 +68,11 @@ or [tera](https://github.com/Keats/tera) then you could do something like:
 
     <script src="public{{ manifest.get("application.js") }}"></script>
 
-Note the manifest value will have a preceeding slash so you don't need one after the folder name `public`.
+_Note the manifest value will have a preceeding slash so you don't need one after the folder name `public`.
+Also it would be nicer to create a helper method for yourself that precedes your asset with concatenation of
+`public` or whatever directory name you choose to serve it under._
 
-Do this preferred way means you should have the folder `/public/packs/*` routed something like:
+Doing this preferred way means you should have the folder `/public/packs/*` routed with something like this:
 
 ```rust
 pub fn router() -> Router {
