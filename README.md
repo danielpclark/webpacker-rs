@@ -41,6 +41,34 @@ webpacker::manifest()
 
 You can use the `Manifest` object in your routing tables.
 
+## Gotham
+
+In [Gotham](https://gotham.rs/) one way you can use the manifest for the router as follows:
+
+```rust
+pub fn router() -> Router {
+    build_simple_router(|route| {
+        for (key, value) in webpacker::manifest(None).unwrap() {
+            route
+                .get(&format!("public/{}", key))
+                .to_file(format!("public{}", value));
+        }
+    })
+}
+```
+
+And in each of your webpages you link to your assets as though they were in the `public/` folder. 
+This will map the normal file names like `application.js` to their hashed version
+`application-285f2db5acb1800187f0.js`.  _I'm not sure having the router do this lets the cache
+invalidation work as intended._
+
+The recommended way to use this is to have a helper method write the mapped file name right to
+the generated webpage HTML source.  So if you're using handlebars or terra then you could do
+something like:
+
+    <script src="{{ manifest.get("application.js") }}"></script>
+
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/danielpclark/webpacker-cli
