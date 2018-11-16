@@ -63,8 +63,8 @@ This will map the normal file names like `application.js` to their hashed versio
 invalidation work as intended._
 
 The recommended way to use this is to have a helper method write the mapped file name right to
-the generated webpage HTML source.  So if you're using handlebars or terra then you could do
-something like:
+the generated webpage HTML source.  So if you're using [handlebars](https://github.com/sunng87/handlebars-rust)
+or [tera](https://github.com/Keats/tera) then you could do something like:
 
     <script src="public{{ manifest.get("application.js") }}"></script>
 
