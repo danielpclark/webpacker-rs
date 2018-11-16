@@ -3,6 +3,10 @@ use std::process::Command;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
+pub mod asset_path;
+#[cfg(feature = "gotham-helper")]
+pub mod gotham;
+
 pub type Manifest = HashMap<String, String>;
 
 pub fn valid_project_dir() -> bool {
