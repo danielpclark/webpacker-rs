@@ -34,9 +34,8 @@ a hash of the file manifest with:
 ```rust
 use webpacker;
 
-// Returns webpacker::Manifest object
-// which has a `get` method to look up
-// each file.
+// Returns `Manifest` object which is an
+// immutable Hashmap
 webpacker::manifest()
 ```
 

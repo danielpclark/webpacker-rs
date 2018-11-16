@@ -3,6 +3,8 @@ use std::process::Command;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
+type Manifest = HashMap<String, String>;
+
 pub fn valid_project_dir() -> bool {
     Command::new("yarn").arg("-v")
         .output().expect("Error: Yarn needs to be available.")
@@ -41,7 +43,7 @@ pub fn manifest(file: Option<&str>) -> Option<Manifest> {
 
     if let Ok(f) = file {
 
-        let mut hash = <im::hashmap::HashMap<String, String>>::new();
+        let mut manifest = Manifest::new();
         
         for line in BufReader::new(f).lines() {
             let line = line.unwrap();
@@ -49,22 +51,12 @@ pub fn manifest(file: Option<&str>) -> Option<Manifest> {
 
             if result.len() == 5 {
                 let (key, value) = (result[1], result[3]);
-                hash.insert((*key).to_string(), (*value).to_string());
+                manifest.insert((*key).to_string(), (*value).to_string());
             }
         }
 
-        Some(Manifest { map: hash })
+        Some(manifest)
     } else {
         None
-    }
-}
-
-pub struct Manifest {
-    map: HashMap<String, String>
-}
-
-impl Manifest {
-    pub fn get(&self, key: &str)  -> Option<&String> {
-        self.map.get(key)
     }
 }
