@@ -1,3 +1,4 @@
+extern crate im;
 use im::hashmap::HashMap;
 use std::process::Command;
 use std::fs::File;
