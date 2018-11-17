@@ -15,7 +15,12 @@ webpacker = "~0.3"
 webpacker = "~0.3"
 ```
 
-In your build script you can do the following:
+Before you can build you need to initialize the webpacker environment with:
+
+    gem install webpacker_cli
+    webpacker-cli init
+
+Now your build script will be able to compile. In your build script you can do the following:
 
 ```rust
 use webpacker;
