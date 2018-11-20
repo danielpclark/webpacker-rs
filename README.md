@@ -19,7 +19,6 @@ Before you can build you need to initialize the webpacker environment with:
 
     gem install webpacker_cli
     webpacker-cli init
-    bundle install
 
 Now your build script will be able to compile. In your build script you can do the following:
 
