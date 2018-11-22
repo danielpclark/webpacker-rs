@@ -1,6 +1,6 @@
 [package]
 name          = "webpacker"
-version       = "0.3.2"
+version       = "0.3.3"
 authors       = ["Daniel P. Clark <6ftdan@gmail.com>"]
 description   = "A Rust wrapper for using Webpacker to manage assets."
 repository    = "https://github.com/danielpclark/webpacker-rs"

@@ -1,6 +1,11 @@
 pub mod validation {
     use std::process::Command;
 
+    pub fn node() -> bool {
+        Command::new("node").arg("-v").output()
+            .expect("Error: Node needs to be available.").status.success()
+    }
+
     pub fn yarn() -> bool {
         Command::new("yarn").arg("-v").output()
             .expect("Error: Yarn needs to be available.").status.success()
@@ -11,11 +16,6 @@ pub mod validation {
             .expect("Error: Ruby needs to be available.").status.success()
     }
 
-    pub fn node() -> bool {
-        Command::new("node").arg("-v").output()
-            .expect("Error: Node needs to be available.").status.success()
-    }
-
     pub fn rake() -> bool {
         Command::new("gem").arg("which").arg("rake").output()
             .expect("Error: Rake needs to be available.").status.success()
@@ -24,6 +24,14 @@ pub mod validation {
     pub fn bundler() -> bool {
         Command::new("gem").arg("which").arg("bundler").output()
             .expect("Error: Bundler needs to be available.").status.success()
+    }
+
+    pub fn bundler_dependencies() -> bool {
+        let out = Command::new("bundle").arg("check").output()
+            .expect("Error: Bundler failed to run check.").stdout;
+
+        String::from_utf8_lossy(&out)
+            .contains("The Gemfile's dependencies are satisfied")
     }
 
     pub fn webpacker_cli() -> bool {

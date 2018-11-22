@@ -13,9 +13,9 @@ use dependency::validation::*;
 pub type Manifest = HashMap<String, String>;
 
 pub fn valid_project_dir() -> bool {
-    yarn() && ruby() && node() && rake() &&
-        bundler() && webpacker_cli() &&
-        webpacker_initialization()
+    node() && yarn() && ruby() && rake() &&
+        bundler() && bundler_dependencies() &&
+        webpacker_cli() && webpacker_initialization()
 }
 
 pub fn compile() -> Result<(), String> {
