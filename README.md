@@ -102,13 +102,13 @@ pub fn index_page(state: State) -> (State, (mime::Mime, String)) {
 <script src="{{ application_source }}"></script>
 ```
 
-Doing this preferred way means you should have the folder `/public/packs/*` routed with something like this:
+Doing this preferred way means you should have the folder `/public/*` routed with something like this:
 
 ```rust
 pub fn router() -> Router {
     build_simple_router(|route| {
-        route.get("public/packs/*").to_dir(
-            FileOptions::new("public/packs")
+        route.get("public/*").to_dir(
+            FileOptions::new("public")
                 .with_cache_control("no-cache")
                 .with_gzip(true)
                 .build(),
