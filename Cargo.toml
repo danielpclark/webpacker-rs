@@ -1,7 +1,8 @@
 [package]
 name          = "webpacker"
-version       = "0.3.4"
+version       = "0.4.0"
 authors       = ["Daniel P. Clark <6ftdan@gmail.com>"]
+edition       = "2021"
 description   = "A Rust wrapper for using Webpacker to manage assets."
 repository    = "https://github.com/danielpclark/webpacker-rs"
 keywords      = ["web", "assets"]
@@ -9,4 +10,4 @@ readme        = "README.md"
 license       = "LGPL-3.0"
 
 [dependencies]
-im            = "~15.0.0"
+im            = "~15.1"

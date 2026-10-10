@@ -1,8 +1,7 @@
-extern crate im;
 use im::hashmap::HashMap;
-use std::process::Command;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::process::Command;
 
 pub mod asset_path;
 // namespaces provide helpful panic info
@@ -13,9 +12,14 @@ use dependency::validation::*;
 pub type Manifest = HashMap<String, String>;
 
 pub fn valid_project_dir() -> bool {
-    node() && yarn() && ruby() && rake() &&
-        bundler() && bundler_dependencies() &&
-        webpacker_cli() && webpacker_initialization()
+    node()
+        && yarn()
+        && ruby()
+        && rake()
+        && bundler()
+        && bundler_dependencies()
+        && webpacker_cli()
+        && webpacker_initialization()
 }
 
 pub fn compile() -> Result<(), String> {
@@ -26,14 +30,12 @@ pub fn compile() -> Result<(), String> {
         .map_err(|e| format!("Error: {}", e))
 }
 
-
 pub fn manifest(file: Option<&str>) -> Option<Manifest> {
     let file = File::open(file.unwrap_or("public/packs/manifest.json"));
 
     if let Ok(f) = file {
-
         let mut manifest = Manifest::new();
-        
+
         for line in BufReader::new(f).lines() {
             let line = line.unwrap();
             let result: Vec<&str> = line.split('"').collect();

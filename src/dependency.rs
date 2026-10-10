@@ -2,46 +2,78 @@ pub mod validation {
     use std::process::Command;
 
     pub fn node() -> bool {
-        Command::new("node").arg("-v").output()
-            .expect("Error: Node needs to be available.").status.success()
+        Command::new("node")
+            .arg("-v")
+            .output()
+            .expect("Error: Node needs to be available.")
+            .status
+            .success()
     }
 
     pub fn yarn() -> bool {
-        Command::new("yarn").arg("-v").output()
-            .expect("Error: Yarn needs to be available.").status.success()
+        Command::new("yarn")
+            .arg("-v")
+            .output()
+            .expect("Error: Yarn needs to be available.")
+            .status
+            .success()
     }
 
     pub fn ruby() -> bool {
-        Command::new("ruby").arg("-v").output()
-            .expect("Error: Ruby needs to be available.").status.success()
+        Command::new("ruby")
+            .arg("-v")
+            .output()
+            .expect("Error: Ruby needs to be available.")
+            .status
+            .success()
     }
 
     pub fn rake() -> bool {
-        Command::new("gem").arg("which").arg("rake").output()
-            .expect("Error: Rake needs to be available.").status.success()
+        Command::new("gem")
+            .arg("which")
+            .arg("rake")
+            .output()
+            .expect("Error: Rake needs to be available.")
+            .status
+            .success()
     }
 
     pub fn bundler() -> bool {
-        Command::new("gem").arg("which").arg("bundler").output()
-            .expect("Error: Bundler needs to be available.").status.success()
+        Command::new("gem")
+            .arg("which")
+            .arg("bundler")
+            .output()
+            .expect("Error: Bundler needs to be available.")
+            .status
+            .success()
     }
 
     pub fn bundler_dependencies() -> bool {
-        let out = Command::new("bundle").arg("check").output()
-            .expect("Error: Bundler failed to run check.").stdout;
+        let out = Command::new("bundle")
+            .arg("check")
+            .output()
+            .expect("Error: Bundler failed to run check.")
+            .stdout;
 
-        String::from_utf8_lossy(&out)
-            .contains("The Gemfile's dependencies are satisfied")
+        String::from_utf8_lossy(&out).contains("The Gemfile's dependencies are satisfied")
     }
 
     pub fn webpacker_cli() -> bool {
-        Command::new("webpacker-cli").output()
-            .expect("Error: WebpackerCli needs to be available.").status.success()
+        Command::new("webpacker-cli")
+            .output()
+            .expect("Error: WebpackerCli needs to be available.")
+            .status
+            .success()
     }
 
     pub fn webpacker_initialization() -> bool {
-        Command::new("rake").arg("webpacker:verify_install").output()
-            .expect("Error: Webpacker not verified as installed.  Did you try `webpacker-cli init` ?")
-            .status.success()
+        Command::new("rake")
+            .arg("webpacker:verify_install")
+            .output()
+            .expect(
+                "Error: Webpacker not verified as installed.  Did you try `webpacker-cli init` ?",
+            )
+            .status
+            .success()
     }
 }

@@ -9,10 +9,10 @@ Add the following to your Cargo.toml
 
 ```toml
 [dependencies]
-webpacker = "~0.3"
+webpacker = "~0.4"
 
 [build-dependencies]
-webpacker = "~0.3"
+webpacker = "~0.4"
 ```
 
 Before you can build you need to initialize the webpacker environment with:
@@ -121,9 +121,9 @@ pub fn router() -> Router {
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/danielpclark/webpacker-cli
+Bug reports and pull requests are welcome on GitHub at https://github.com/danielpclark/webpacker-rs
 
 
 ## License
 
-The gem is available as open source under the terms of the [GNU Lesser General Public License version 3](https://opensource.org/licenses/LGPL-3.0).
+The crate is available as open source under the terms of the [GNU Lesser General Public License version 3](https://opensource.org/licenses/LGPL-3.0).
