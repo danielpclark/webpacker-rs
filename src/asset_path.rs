@@ -2,25 +2,28 @@ use super::Manifest;
 
 pub struct AssetPath {
     dir: String,
-    file: String, 
+    file: String,
 }
 
 impl AssetPath {
-    pub fn new<S>(dir: S, file_key: S, manifest: &Manifest) -> Self 
-    where S: Into<String> {
+    pub fn new<S>(dir: S, file_key: S, manifest: &Manifest) -> Self
+    where
+        S: Into<String>,
+    {
         let file = file_key.into();
         AssetPath {
             dir: dir.into(),
-            file: manifest.get(&file)
-                .expect(&format!("File key '{}' not found in file manifest!", &file))
-                .to_owned()
+            file: manifest
+                .get(&file)
+                .unwrap_or_else(|| panic!("File key '{}' not found in file manifest!", file))
+                .to_owned(),
         }
     }
 }
 
-impl<'a> From<AssetPath> for String {
+impl From<AssetPath> for String {
     fn from(t: AssetPath) -> String {
-         format!("{}{}", t.dir.trim_end_matches('/'), t.file)
+        format!("{}{}", t.dir.trim_end_matches('/'), t.file)
     }
 }
 
